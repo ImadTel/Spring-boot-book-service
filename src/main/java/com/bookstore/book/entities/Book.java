@@ -1,4 +1,5 @@
 package com.bookstore.book.entities;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -18,7 +19,7 @@ public class Book {
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "author_sequence"
+            generator = "book_sequence"
     )
     private Long id;
     @Column(unique = true)
@@ -27,4 +28,11 @@ public class Book {
     @CreationTimestamp
     private LocalDate published_in;
     private Integer edition;
+
+    @ManyToOne
+    @JoinColumn(
+            name = "author_id"
+    )
+    @JsonBackReference
+    private Author author;
 }
