@@ -10,6 +10,8 @@ import java.time.LocalDate;
 @Table
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Book {
     @Id
     @SequenceGenerator(
@@ -24,7 +26,7 @@ public class Book {
     private Long id;
     @Column(unique = true)
     private String title;
-    @Column(updatable = false)
+    @Column(updatable = false,insertable = false)
     @CreationTimestamp
     private LocalDate published_in;
     private Integer edition;
